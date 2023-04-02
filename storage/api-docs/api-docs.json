@@ -1,0 +1,91 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "My First API",
+        "version": "0.1"
+    },
+    "servers": [
+        {
+            "url": "https://foo.localhost:8000/api/",
+            "description": "Learning env"
+        }
+    ],
+    "paths": {
+        "/subscribe/messages": {
+            "post": {
+                "operationId": "c94442c0f92f4f9fe35ab8354e43d913",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "token": {
+                                        "type": "string"
+                                    },
+                                    "chat_id": {
+                                        "type": "string"
+                                    },
+                                    "message": {
+                                        "type": "string"
+                                    }
+                                },
+                                "type": "object",
+                                "example": {
+                                    "token": "a3fb6",
+                                    "chat_id": "123",
+                                    "message": "Hi i am a message"
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Successful operation"
+                    }
+                }
+            }
+        },
+        "/set/webhook": {
+            "post": {
+                "operationId": "39ae877742837020f91da32632f2ee5a",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "token": {
+                                        "type": "string"
+                                    },
+                                    "webhook": {
+                                        "type": "string"
+                                    }
+                                },
+                                "type": "object",
+                                "example": {
+                                    "token": "a3fb6",
+                                    "webhook": "getData"
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Successful operation"
+                    }
+                }
+            }
+        },
+        "/get/updates": {
+            "get": {
+                "operationId": "bdc53b7d182aced0709a9e68fa95077d",
+                "responses": {
+                    "200": {
+                        "description": "Successful operation"
+                    }
+                }
+            }
+        }
+    }
+}
