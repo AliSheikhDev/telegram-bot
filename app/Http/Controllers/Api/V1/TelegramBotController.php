@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Api\V1;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Telegram\Bot\Api;
+use Mpociot\BotMan\BotMan;
 
 class TelegramBotController extends Controller
 {
@@ -87,7 +88,7 @@ class TelegramBotController extends Controller
      * )
      */
 	public function setWebHook(Request $request) {
-		$telegram = new Api($request->token);
+		$telegram = new Api(env('TELEGRAM_TOKEN'));
 		$response = $telegram->setWebhook([
 			'url' => 'https://example.com/'.$request->token.'/'.$request->webhook,
 			'certificate' => '/path/to/public_key_certificate.pub'
@@ -111,4 +112,17 @@ class TelegramBotController extends Controller
 		$response = $telegram->getUpdates();
 		return response()->json($response, 200);
 	}
+
+	public function laravelBot(Request $request) {
+		$botman = app('botman');
+
+		$botman->hears($request->message, function (BotMan $bot) {
+			$bot->reply('Hello yourself.');
+		});
+
+		// start listening
+		$botman->listen();
+	}
 }
+
+

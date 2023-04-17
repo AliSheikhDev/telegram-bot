@@ -18,6 +18,11 @@ use Illuminate\Support\Facades\Route;
 //     return $request->user();
 // });
 // dd(123);
+
 Route::post('/subscribe/messages', 'TelegramBotController@subscribeMessage');
 Route::post('/set/webhook', 'TelegramBotController@setWebHook');
 Route::get('/get/updates', 'TelegramBotController@getWebHookUpdates');
+Route::get('/mylaravel/bot', 'TelegramBotController@getWebHookUpdates');
+// use Mpociot\BotMan\BotMan;
+// $botman = app('botman');
+Route::post('/bot', 'TelegramBotController@laravelBot');
